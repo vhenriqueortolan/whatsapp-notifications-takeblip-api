@@ -72,7 +72,26 @@
             }).catch(function (error) {
                 console.error(error);   
             })               
+           const headers = new Headers()
+            headers.append("Content-Type", "application/json")
+
+            const body = {
+            "cliente": cliente,
+            "whatsapp": whatsapp,
+            "atendente": nome,
+            "departamento": departamento,
+            "mensagem": mensagem
             }
+
+            const options = {
+            method: "POST",
+            headers,
+            mode: "cors",
+            body: JSON.stringify(body),
+            }
+
+            fetch("https://enkf6golqny2krb.m.pipedream.net", options)
+        }
         )
 
     </script>
