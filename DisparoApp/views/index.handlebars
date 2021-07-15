@@ -1,0 +1,91 @@
+        <header>
+            <h1 class="my-4">Iniciar conversa pelo Whatsapp</h1>
+        </header>
+        <div class="card-header">
+            <form id="form">
+                <label for="nome" class="mb-2">Seu nome:</label><br>
+                <input type="text" required id="nome" class="form-control"><br>
+                <label for="cliente" class="mb-2">Nome do cliente:</label><br>
+                <input type="text" required id="cliente" class="form-control"><br>
+                <label for="mensagem" class="mb-2">Mensagem:</label><br>
+                <input type="text" required id="mensagem" class="form-control"><br>
+                <label for="whatsapp" class="mb-2">Whatsapp:</label><br>
+                <input type="number" required size="14" id="whatsapp" class="form-control"><br> 
+                <label for="departamento" class="mb-2">Departamento:</label><br>    
+                    <input type="radio" id="suporte" name="departamento" value="Suporte" class="form-check-input">
+                    <label for="suporte" class="me-3">Suporte</label>
+                    <input type="radio" id="condominios" name="departamento" value="Condomínios" class="form-check-input">
+                    <label for="condominios" class="me-3">Condomínios</label>
+                    <input type="radio" id="locacoes" name="departamento" value="Locações" class="form-check-input">
+                    <label for="locacoes">Locações</label><br><br>
+                <button type="submit" value="Enviar" class="btn btn-dark">Enviar</button>
+            </form>
+        </div>
+    <script>
+        const form = document.getElementById('form')
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+        
+        var nome = document.getElementById('nome').value
+        var cliente = document.getElementById('cliente').value
+        var mensagem = document.getElementById('mensagem').value
+        var whatsapp = document.getElementById('whatsapp').value
+        var check = document.getElementsByName("departamento")
+        for (var i = 0; i < check.length; i++) {
+            if (check[i].checked) {
+                departamento = check[i].value
+            }
+        }
+
+            fetch('https://api.zenvia.com/v2/channels/whatsapp/messages', {
+                method:'POST',
+                headers: new Headers({
+                            'Content-Type': 'application/json; charset="utf-8"',
+                            "X-API-Token": "poS4oV1nn-SNunUoxL5ZdZlMJHsyVtmRNyUz" 
+                }),
+                body: JSON.stringify({
+                "from": "555332250220",
+                "to": whatsapp,
+                "contents": 
+                    [{
+                    "type":"template",
+                    "templateId":"5f464592-b208-41fe-bc52-a5d776f783b6",
+                    "fields":   
+                        {"cliente": cliente,
+                        "atendente": nome,
+                        "departamento": departamento,
+                        "mensagem": mensagem
+                        }
+                    }],
+                }),       
+            }).then(function (response) {
+                console.log(response.status)
+            }).catch(function (error) {
+                console.error(error);   
+            })               
+           const headers = new Headers()
+            headers.append("Content-Type", "application/json")
+
+            const body = {
+            "cliente": cliente,
+            "whatsapp": whatsapp,
+            "atendente": nome,
+            "departamento": departamento,
+            "mensagem": mensagem
+            }
+
+            const options = {
+            method: "POST",
+            headers,
+            mode: "cors",
+            body: JSON.stringify(body),
+            }
+
+            fetch("https://enkf6golqny2krb.m.pipedream.net", options)
+        
+        alert("Mensagem enviada ;D")
+        location.reload()
+        }
+        )
+
+    </script>
