@@ -3,6 +3,8 @@ const router = express.Router()
 const mongoose = require('mongoose')
 require('../models/Disparo')
 const Disparo = mongoose.model('disparo')
+require('../models/Contato')
+const Contato = mongoose.model('contato')
 
 router.get('/', (req, res) => {
     res.render("../views/index")
@@ -29,4 +31,25 @@ router.post('/id', (req,res) => {
         res.send(disparo[0])
     })
 })
+
+router.post('/contato', (req,res) => {
+        Contato.findOne({whatsapp: req.body.whatsapp}).then((contato) => {
+            res.send(contato)
+        }).catch((err) => {
+            res.status(404).json({ status: 'not ok' })
+        })
+})
+
+router.post('/novo-contato', (req,res) => {
+        const novoContato = {
+            cliente: req.body.cliente,
+            whatsapp: req.body.whatsapp
+        }
+        new Contato(novoContato).save().then(() => {
+            res.sendStatus(200)
+        }).catch((err) => {
+            res.send(err)
+        })
+})
+
 module.exports = router
