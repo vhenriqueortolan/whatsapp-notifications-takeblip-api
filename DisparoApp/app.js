@@ -1,4 +1,5 @@
 // Carregando módulos
+    require("dotenv").config()
     const express = require('express')
     const handlebars = require('express-handlebars')
     const app = express()
@@ -15,7 +16,7 @@
         app.set('view engine', 'handlebars')
     // Mongoose
         mongoose.Promise = global.Promise
-        mongoose.connect('mongodb+srv://vhenriqueortolan:03051995@disparoapp.pfknb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+        mongoose.connect(process.env.DB_CONNECT, {
             useNewUrlParser: true, 
             useUnifiedTopology: true
         }).then(() => {
@@ -30,5 +31,4 @@
     app.use('/', index)
     
 // Outros
-const PORT = process.env.PORT || 8081
-app.listen(PORT)
+app.listen(process.env.PORT)
