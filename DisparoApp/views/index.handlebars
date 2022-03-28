@@ -4,31 +4,14 @@
         <header>
             <h1 class="my-4 text-center" >Iniciar conversa pelo Whatsapp</h1>
         </header>
-            <div id='form' class="card-header mb-3">
-                    <form id="form-multi">
-                        <div class="row">
-                            <div class="col">
-                                <label for="nome" class="mb-2">Seu nome:</label><br>
-                                <input type="text" required id="nome2" class="form-control"><br>
-                            </div>
-                        </div>
+            <div id='div-form' class="card-header mb-3">
+                    <form id="form" onsubmit="sendMessage()">
+                        <label for="nomeAgente" class="mb-2">Seu nome:</label><br>
+                        <input type="text" required id="nomeAgente" class="form-control"><br>
+                        <label for="emailAgente" class="mb-2">Email:</label><br>
+                        <input type="email" required id="emailAgente" class="form-control"><br>
                         <label for="mensagem" class="mb-2">Mensagem:</label><br>
-                        <input type="text" required id="mensagem2" class="form-control"><br>
-                         <label for="departamento" class="mb-2">Departamento:</label><br>
-                        <div class="row d-flex justify-content-evenly my-3">
-                                <div class="col">
-                                    <input type="radio" id="suporte2" name="departamento" value="Suporte" class="form-check-input mx-2">
-                                    <label for="suporte" class="me-3">Suporte</label>
-                                </div>
-                                <div class="col">
-                                    <input type="radio" id="condominios2" name="departamento" value="Condomínios" class="form-check-input mx-2" >
-                                    <label for="condominios" class="me-3">Condomínios</label>
-                                </div>
-                                <div class="col">
-                                    <input type="radio" id="locacoes2" name="departamento" value="Locações" class="form-check-input mx-2">
-                                    <label for="locacoes">Locações</label>
-                                </div><br><br>
-                        </div>
+                        <input type="text" required id="mensagem" class="form-control"><br>
                         <div class="container row">
                                 <div class="col" id="col">
                                     <label for="cliente" class="mb-2">Cliente:</label><br>
@@ -40,10 +23,10 @@
                         <div id="add" class="container" name='add'> 
                             <div id="row" class="row">
                                 <div class="col" id="col">
-                                    <input type="text" required id="client" name='nome' class="form-control"><br>
+                                    <input type="text" required id="cliente" name='cliente' class="form-control"><br>
                                 </div>
                                 <div class="col" id='col0'>
-                                    <input type="number" required size="14" id="0" name="whatsapp" class="form-control" style="display: inline-block">
+                                    <input type="number" required size="14" id="whatsapp" name="whatsapp" class="form-control" style="display: inline-block">
                                 </div>
                             </div>
                         </div>
@@ -53,7 +36,7 @@
                                 <button type="button" value="Enviar" class="btn btn-outline-dark mb-4 mx-1" onclick="removeElement()">Remover</button>
                             </div>
                         </div>
-                        <div class="col"><button type="submit" value="Enviar" style="display: block" class="btn btn-dark mx-auto mb-4 my-2">Enviar mensagens</button></div>
+                        <div class="col"><input type="button" value="Enviar mensagens" style="display: block" class="btn btn-dark mx-auto mb-4 my-2" onclick="sendMessage()"></div>
     
                     </form>
                 </div>

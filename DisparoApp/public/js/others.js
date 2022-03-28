@@ -11,7 +11,7 @@ function add() {
     div.setAttribute('class', 'row');
     div.setAttribute('id', 'row'+new_id);
     div.innerHTML = `<div class="col" id="col">
-    <input type="text" required id="client${new_id}" name='nome' class="form-control"><br>
+    <input type="text" required id="client${new_id}" name='cliente' class="form-control"><br>
 </div>
 <div class="col" id='col0'>
     <input type="number" required size="14" id="0" name="whatsapp" class="form-control">
@@ -22,13 +22,5 @@ function add() {
                                         
 }
 
-function uniq(){
-    document.getElementById('form-uniq').style.display = 'block';
-    document.getElementById('form-multi').style.display = 'none'
-}
 
-function multi(){
-    document.getElementById('form-uniq').style.display = 'none';
-    document.getElementById('form-multi').style.display = 'block'
-}
                               
