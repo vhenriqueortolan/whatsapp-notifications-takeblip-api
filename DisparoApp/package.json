@@ -1,6 +1,6 @@
 {
   "name": "disparoapp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Disparar notificações pelo whatsapp usando a Zenvia API",
   "main": "app.js",
   "dependencies": {

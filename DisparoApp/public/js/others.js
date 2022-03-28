@@ -4,6 +4,7 @@ function removeElement(elementId) {
     var element = document.getElementById('add');
     element.lastElementChild.remove()
 }
+
 function add() {
     new_id++;// increment reqs_id to get a unique ID for the new element
     //create col 1
@@ -18,8 +19,17 @@ function add() {
 </div>`
 
     var add = document.getElementById('add')
-    add.appendChild(div)
-                                        
+    add.appendChild(div)                                 
+}
+
+function preview() {
+    const agent = document.getElementById('nomeAgente').value
+    const msg = document.getElementById('mensagem').value
+    const p = document.getElementById('preview')
+    p.innerHTML = `<strong>Preview:</strong><br>
+                    Olá, (cliente)! <br>
+                    Sou ${agent}, da imobiliária G3. <br>
+                    Estou entrando em contato ${msg}`
 }
 
 

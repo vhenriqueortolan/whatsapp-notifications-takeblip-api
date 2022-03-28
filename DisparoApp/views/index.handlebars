@@ -6,12 +6,15 @@
         </header>
             <div id='div-form' class="card-header mb-3">
                     <form id="form" onsubmit="sendMessage()">
-                        <label for="nomeAgente" class="mb-2">Seu nome:</label><br>
-                        <input type="text" required id="nomeAgente" class="form-control"><br>
-                        <label for="emailAgente" class="mb-2">Email:</label><br>
-                        <input type="email" required id="emailAgente" class="form-control"><br>
-                        <label for="mensagem" class="mb-2">Mensagem:</label><br>
-                        <input type="text" required id="mensagem" class="form-control"><br>
+                        <div id="agentInfo">
+                            <label for="nomeAgente" class="mb-2">Seu nome:</label><br>
+                            <input type="text" required id="nomeAgente" class="form-control"><br>
+                            <label for="emailAgente" class="mb-2">Email:</label><br>
+                            <input type="email" required id="emailAgente" class="form-control"><br>
+                            <label for="mensagem" class="mb-2">Mensagem:</label><br>
+                            <textarea required id="mensagem" class="form-control" onkeydown="preview()" maxlength="40"></textarea><br>
+                            <p id="preview" style="max-width: 400px; word-wrap: break-word"></p>
+                        </div>
                         <div class="container row">
                                 <div class="col" id="col">
                                     <label for="cliente" class="mb-2">Cliente:</label><br>
