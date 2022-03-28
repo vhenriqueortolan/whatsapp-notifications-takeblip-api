@@ -4,6 +4,7 @@
     const handlebars = require('express-handlebars')
     const app = express()
     const index = require('./routes/index')
+    const apiBlip = require('./routes/apiBlip')
     const path = require('path')
     const mongoose = require('mongoose')
 
@@ -29,6 +30,7 @@
 
 // Rotas
     app.use('/', index)
+    app.use('/', apiBlip)
     
 // Outros
 app.listen(process.env.PORT)

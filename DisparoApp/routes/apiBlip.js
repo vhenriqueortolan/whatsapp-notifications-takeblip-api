@@ -1,38 +1,44 @@
 require("dotenv").config()
 const express = require('express')
 const apiBlip = express.Router()
-const axios = require('axios');
+const axios = require('axios').default
 
 apiBlip.post('/apiBlip', (req,res) => {
-    async function sendMessage() {
+    console.log(req.body)
+    const headers = {
+        "Content-Type":"application/json",
+        "Authorization":`${process.env.BLIPTOKEN}`
+    }
+    const sendMessage = async () => {
         try {
-           const id = await axios.post({
+           const id = await axios.post(process.env.URI_BLIPCOMMAND, {
                 "id": "{{$guid}}",
                 "to": "postmaster@wa.gw.msging.net",
                 "method": "get",
-                "uri": `"lime://wa.gw.msging.net/accounts/+55${req.body.whatsapp}"`
-                })
-            if (id.status = "success") {
-                const update = await axios.post({
+                "uri": `lime://wa.gw.msging.net/accounts/+55${req.body.whatsapp}`
+                }, {headers: headers})
+                console.log()
+            if (id.data.status = "success") {
+                const update = await axios.post(process.env.URI_BLIPCOMMAND, {
                     "id": "{{$guid}}",
                     "method": "merge",
                     "uri": "/contacts",
                     "type": "application/vnd.lime.contact+json",
                     "resource": {
-                        "identity": `"${id.resource.identity}"`,
-                        "name": `"${req.body.cliente}"`,
+                        "identity": id.data.resource.identity,
+                        "name": req.body.cliente,
                         "group":"true",    
                         "extras": {
-                            "ultimoAgente":`"${req.body.agente}"`,
-                            "tipoDeNegociacao": "Contato Ativo"
+                            "UltimoAgente": req.body.emailAgente,
+                            "TipodeAtendimento": "ativo"
                         },
                         "source": "whatsapp"
                     }
-                })
-                if (update.status = "success") {
-                    const send = await axios.post({
+                }, {headers: headers})
+                if (update.data.status = "success") {
+                    const msg = await axios.post(process.env.URI_BLIPMESSAGE, {
                         "id":"{{$guid}}",
-                        "to":"555399278087@wa.gw.msging.net",
+                        "to": id.data.resource.identity,
                         "type":"application/json",
                         "content":{
                             "type":"template",
@@ -49,28 +55,43 @@ apiBlip.post('/apiBlip', (req,res) => {
                                         "parameters": [
                                             {
                                                 "type": "text",
-                                                "text": "Victor"
+                                                "text": req.body.cliente
                                             },
                                             {
                                                 "type":"text",
-                                                "text":"Elis"
+                                                "text": req.body.nomeAgente
                                             },
                                             {
                                                 "type":"text",
-                                                "text":"sobre seu interesse em alugar um imóvel"
+                                                "text": req.body.mensagem
                                             }
                                         ]
                                     }
                                 ]
                             }
                         }
-                    })
+                    }, {headers: headers})
+                    if (msg.status = 200) {
+                        res.sendStatus(msg.status)
+                    }
+                    else {
+                        console.log(msg.data)
+                    }
                 }
+                else {
+                    console.log(update.data)
+                }
+            }
+            else {
+                console.log(id.data)
             }
 
         }
-        catch {
-
+        catch (err) {
+            console.log(err)
         }
     }
+    sendMessage()
 })
+
+module.exports = apiBlip
