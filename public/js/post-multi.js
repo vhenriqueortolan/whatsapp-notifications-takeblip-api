@@ -1,7 +1,4 @@
 async function sendMessage(){
-    document.getElementById("form").addEventListener("submit", function(event){
-        event.preventDefault()
-    })
     const nomeAgente = document.getElementById('nomeAgente').value
     const emailAgente = document.getElementById('emailAgente').value
     const mensagem = document.getElementById('mensagem').value
