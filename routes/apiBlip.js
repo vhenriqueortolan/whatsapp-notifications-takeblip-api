@@ -1,4 +1,3 @@
-require("dotenv").config()
 const express = require('express')
 const apiBlip = express.Router()
 const axios = require('axios').default
