@@ -16,7 +16,8 @@ apiBlip.post('/apiBlip', (req,res) => {
                 "method": "get",
                 "uri": `lime://wa.gw.msging.net/accounts/+55${req.body.whatsapp}`
                 }, {headers: headers})
-            if (id.data.status = "success") {
+                console.log(id.data.status)
+            if (id.data.status == "success") {
                 const update = await axios.post(process.env.URI_BLIPCOMMAND, {
                     "id": "{{$guid}}",
                     "method": "merge",
@@ -79,7 +80,9 @@ apiBlip.post('/apiBlip', (req,res) => {
                             }
                         }, {headers: headers})
                         if (msg.status = 200) {
-                            res.sendStatus(msg.status)
+                            res.json({
+                                status: "success"
+                            })
                         }
                         else {
                             console.log(msg.data)
@@ -94,9 +97,12 @@ apiBlip.post('/apiBlip', (req,res) => {
                 }
             }
             else {
-                console.log(id.data)
+                res.json({
+                    status: "failure",
+                    message: `Número ${req.body.whatsapp} incorreto ou não possui WhatsApp`,
+                    description: id.data.reason.description
+                })
             }
-
         }
         catch (err) {
             console.log(err)
