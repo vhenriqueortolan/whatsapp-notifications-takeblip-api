@@ -30,7 +30,7 @@ async function sendMessage(){
                 const err = post.data.message
                 const msgErr = `Mensagem para ${cliente} recebeu o erro: ${err} `
                 notOk.push(msgErr)
-                
+                rowNotOk.push(`row${x}`)
             }
         }
         catch (err){
