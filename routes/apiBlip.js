@@ -83,7 +83,7 @@ apiBlip.post('/apiBlip', (req,res) => {
                             res.json({
                                 status: "success"
                             })
-                            let register = await axios.post(proccess.env.URI_REGISTER, {
+                            let register = await axios.post(process.env.URI_REGISTER, {
                                 "atendente": req.body.nomeAgente,
                                 "email": req.body.emailAgente,
                                 "cliente": req.body.cliente,
