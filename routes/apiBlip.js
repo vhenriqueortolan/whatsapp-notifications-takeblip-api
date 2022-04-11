@@ -83,12 +83,15 @@ apiBlip.post('/apiBlip', (req,res) => {
                             res.json({
                                 status: "success"
                             })
+                            let d = new Date()
+                            let time = `${d.getUTCDate()}/${d.getUTCMonth() + 1}/${d.getUTCFullYear()}`
                             let register = await axios.post(process.env.URI_REGISTER, {
+                                "data": time,
                                 "atendente": req.body.nomeAgente,
                                 "email": req.body.emailAgente,
                                 "cliente": req.body.cliente,
-                                "WhatsApp": req.body.whatsapp,
-                                "Mensagem": req.body.mensagem
+                                "whatsApp": req.body.whatsapp,
+                                "mensagem": req.body.mensagem
                             })
                         }
                         else {
