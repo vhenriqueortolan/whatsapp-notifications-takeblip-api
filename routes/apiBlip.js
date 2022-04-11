@@ -89,7 +89,7 @@ apiBlip.post('/apiBlip', (req,res) => {
                                 "cliente": req.body.cliente,
                                 "WhatsApp": req.body.whatsapp,
                                 "Mensagem": req.body.mensagem
-                            }
+                            })
                         }
                         else {
                             console.log(msg.data)
