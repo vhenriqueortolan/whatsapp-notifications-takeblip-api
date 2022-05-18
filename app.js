@@ -2,6 +2,7 @@
     const express = require('express')
     const handlebars = require('express-handlebars')
     const app = express()
+    const cors = require('cors')
     const index = require('./routes/index')
     const apiBlip = require('./routes/apiBlip')
     const path = require('path')
@@ -11,6 +12,7 @@
     // bodyParser
         app.use(express.urlencoded({extended: true}))
         app.use(express.json())
+        app.use(cors())
     // Handlebars
         app.engine('handlebars', handlebars({defaultLayout: 'main'}))
         app.set('view engine', 'handlebars')

@@ -20,6 +20,7 @@
     "cookie": "^0.4.0",
     "cookie-signature": "^1.0.6",
     "core-util-is": "^1.0.2",
+    "cors": "^2.8.5",
     "debug": "^2.6.9",
     "denque": "^1.5.0",
     "depd": "^1.1.2",
